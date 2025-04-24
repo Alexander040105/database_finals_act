@@ -17,7 +17,7 @@ templates - contains the jinja HTML files:>
 
 static folder - contains the js, css and images files
 
-app folder - dito natin ilalagay yung mga folder ng python files for each Blueprints na gagawin natin using the Blueprint function ni flask pero aaralin pa natin pano gamitin yon HASDFHAFSDH here's a tutorial link for it: `<a href="https://www.youtube.com/watch?v=WteIH6J9v64">`https://www.youtube.com/watch?v=WteIH6J9v64 `</a> we'll try to use blueprints para di magulo and iba iba python files for each functionality ng app natin`
+app folder - dito natin ilalagay yung mga folder ng python files for each Blueprints na gagawin natin using the Blueprint function ni flask pero aaralin pa natin pano gamitin yon HASDFHAFSDH here's a tutorial link for it: https://www.youtube.com/watch?v=WteIH6J9v64 `we'll try to use blueprints para di magulo and iba iba python files for each functionality ng app natin`
 
 Then that's all for now, pero if may suggestions kayo kindly edit this readme file or magchat kayo sa gc hihih thanks
 
