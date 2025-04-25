@@ -2,18 +2,15 @@ from flask import Flask, request, render_template, session, redirect, url_for
 import re
 import random
 import time
-
+from app.admin.login import login as admin_login
 
 app = Flask(__name__)
-
-@app.route("/reset", methods=['POST', 'GET'])
-def reset():
-    pass
+app.register_blueprint(admin_login, url_prefix="/admin")
 
 
-@app.route("/login", methods=['POST', 'GET'])
-def login():
-    return render_template('index.html')
+@app.route("/", methods=['POST', 'GET'])
+def home():
+    return render_template("index.html")
 
 if __name__ == "__main__":
     app.run(debug=True)

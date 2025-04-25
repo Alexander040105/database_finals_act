@@ -16,4 +16,4 @@ Flask-Mail
 Flask-Bcrypt
 python-dotenv
 gunicorn 
-
+flask_mysqldb
