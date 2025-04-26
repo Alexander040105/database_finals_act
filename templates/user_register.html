@@ -10,11 +10,24 @@
     <title></title>
 </head>
 <body>
-    <form method="POST" action="{{ url_for('login.admin_login') }}" id="user_input_form">
+    <form method="POST" action="{{ url_for('login.user_login') }}" id="user_input_form">
         <h3>Email</h3>
-        <input type="text" id="user_input" name="user_input" placeholder="email" required>
+        <input type="text" id="user_input" name="user_input" placeholder="Email" required>
         <h3>Password</h3>
         <input type="password" id="user_input" name="user_input" placeholder="Password" required>
+        <h3>First Name</h3>
+        <input type="text" id="user_input" name="user_input" placeholder="Password" required>
+        <h3>Last Name</h3>
+        <input type="text" id="user_input" name="user_input" placeholder="Password" required>
+        <h3>Phone Number</h3>
+        <input type="text" id="user_input" name="user_input" placeholder="Password" required>
+        <h3>Home Address</h3>
+        <textarea type="text" id="user_input" name="user_input" placeholder="Password" required></textarea>
+        <h3>Employee Position</h3>
+        <input type="text" id="user_input" name="user_input" placeholder="Password" required>
+        <h3>Date Hired</h3>
+        <input type="date" id="user_input" name="user_input" placeholder="Password" required>
+
         <button type="submit">Log-in</button>
     </form>
 </body>
