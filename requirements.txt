@@ -17,3 +17,8 @@ Flask-Bcrypt
 python-dotenv
 gunicorn 
 flask_mysqldb
+mysql-connector-python
+mysql-connector-python-rf
+mysql-connector
+pymysql
+cryptography
