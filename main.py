@@ -1,16 +1,29 @@
 from flask import Flask, request, render_template, session, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
 import re
 import random
 import time
 from app.user.login import login as user_login
+from app.user.register import register as user_register
 
 app = Flask(__name__)
-app.register_blueprint(user_login, url_prefix="/user")
+app.register_blueprint(user_login, url_prefix="/user/login")
+app.register_blueprint(user_register, url_prefix="/user/register")
+
+#trying out sqlalchemy
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+app.config['SECRET_KEY'] = 'secret_key'
+db = SQLAlchemy(app)
 
 
+# draft boolean logic lang just to try out the login and register URLs
+user_logged_in = False
 @app.route("/", methods=['POST', 'GET'])
-def home():
-    return render_template("index.html")
+def default():
+    if user_logged_in == False:
+        return redirect("/user/login")
+    else:
+        return redirect("/user/register")
 
 if __name__ == "__main__":
     app.run(debug=True)
