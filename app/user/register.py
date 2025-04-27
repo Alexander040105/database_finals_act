@@ -13,9 +13,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 @register.route("/register", methods=['POST', 'GET'])
 @register.route("/", methods=['POST', 'GET'])
 def user_register():
-    employees = Employee.query.all()
     departments = Department.query.all()
-    print(employees)
     if request.method == 'POST':
         role = None
         first_name = request.form['first_name']
