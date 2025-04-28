@@ -26,7 +26,7 @@ def user_login():
             return redirect(request.url)
 
         #finds user
-        user = WebsiteUsers.query.filter_by(username=email).first()
+        user = WebsiteUsers.query.filter_by(email=email).first()
 
 
         #authentication process
