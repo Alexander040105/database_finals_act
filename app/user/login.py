@@ -15,7 +15,6 @@ def verify_login(hashed_password_from_db, user_input_password):
 
 @login.route("/login", methods=['POST', 'GET'])
 @login.route("/", methods=['POST', 'GET'])
-
 def user_login(): 
     if request.method == "POST":
         email = request.form.get("email")
@@ -53,3 +52,9 @@ def user_login():
     
     # session.clear()  
     return render_template("user_login.html", boolean=True)
+
+@login.route("/logout", methods=['POST', 'GET'])
+@login.route("/", methods=['POST', 'GET'])
+def user_login(): 
+    session.clear()
+    return redirect(url_for(user_login))

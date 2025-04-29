@@ -10,18 +10,18 @@
     <title></title>
 </head>
 <body>
+{% if session['user_role'] == 'Admin' %}
     <nav>
-        {% if session['user_role'] == 'Admin' %}
+        
             <ul>
-                <li><a href="">Admin Dashboard</a></li>
-                <li><a href="">Admin Dashboard</a></li>
-                <li><a href="">Admin Dashboard</a></li>
-                <li><a href="">Logout</a></li>
+                <li><a href="">Admin Dashboard</a></li> <!-- dito sila magaapprove or reject ng leave -->
+                <li><a href="">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
+                <li><a href="{{ url_for(/user/logout) }}">Logout</a></li>
             </ul>
-        {% endif %}
     </nav>
     <h1>Admin Dashboard</h1>
     <h2>Welcome {{ username }}</h2>
+{% endif %}
 </body>
 </html>
 
