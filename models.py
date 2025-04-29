@@ -38,3 +38,16 @@ class EmployeeLeave(db.Model):
     leave_reason = db.Column(db.Text)
     leave_status = db.Column(db.String(200))
     approved_by = db.Column(db.Integer, db.ForeignKey('employee.employee_id'))
+
+    def to_dict(self):
+        return {
+            "leave_id": self.leave_id,
+            "employee_id": self.employee_id,
+            "leave_type": self.leave_type,
+            "start_date": str(self.start_date),
+            "end_date": str(self.end_date),
+            "date_filed": str(self.date_filed),
+            "status": self.leave_status,
+            "leave_reason": self.leave_reason,
+            "approved_by": self.approved_by
+        }

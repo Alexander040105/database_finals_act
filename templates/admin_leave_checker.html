@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %} 
+        <ul> 
+            {% for message in messages %}
+                <li>{{ message }}</li> 
+            {% endfor %} 
+        </ul> 
+    {% endif %} 
+    {% endwith %}
+
+{% if session['user_role'] == 'Admin' %}
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('admin.user_admin_dashboard', user_id=session['employee_id']) }}">Admin's Leave Applications</a></li> <!-- sarili nilang leave -->
+            <li><a href="{{ url_for('admin.user_admin_approval', user_id=session['employee_id']) }}">Admin Leave Dashboard</a></li> 
+            <li><a href="{{ url_for('employee_leave.request_leave', user_role=session['user_role'].lower(), user_id=session['employee_id']) }}">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
+            <li><a href="{{ url_for('admin.user_logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+    <h1>Admin Dashboard</h1>
+    <h2>Welcome {{ username }}</h2>
+{% endif %}
+
+
+<form method="POST" action="{{ url_for('admin.user_admin_approval', user_id=session['employee_id']) }}" >
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Leave ID</th>
+                <th>Employee ID</th>
+                <th>Leave Type</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Date Filed</th>
+                <th>Status</th>
+                <th>Approved By</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if company_leave_applications%}
+                {% for leave in company_leave_applications %}
+                    <tr>
+                        <td>{{ leave.leave_id }}</td>
+                        <td>{{ leave.employee_id }}</td>
+                        <td>{{ leave.leave_type }}</td>
+                        <td>{{ leave.start_date }}</td>
+                        <td>{{ leave.end_date }}</td>
+                        <td>{{ leave.date_filed }}</td>
+                        {% if leave.status == "Pending" %}
+                        <td>
+                            <select name="leave_statuses">
+                                {% for responses in leave_responses %}
+                                    
+                                    <option value="{{ responses }}">{{ responses }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="hidden" name="leave_ids" value="{{ leave.leave_id }}">
+                        </td>   
+
+                        {% elif leave.status == "Approve" %}
+                            <td>Approve</td>
+                        {% else %}
+                            <td>Rejected</td>
+                        {% endif %}                     
+                    {% if leave.approved_by == None %}
+                        <td></td>
+                    {% else %}
+                        <td>{{ leave.approved_by }}</td>
+                    {% endif %}
+                    </tr>
+                {% endfor %}
+            {% else %}
+            <tr><td colspan="8">No leave applications found.</td></tr>
+            {% endif %}
+        </tbody>
+    </table>
+    <button type="submit">Update Status</button>
+</form>
+
+</body>
+</html>
+

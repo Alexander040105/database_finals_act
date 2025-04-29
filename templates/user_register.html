@@ -71,12 +71,6 @@
 
         <button type="submit">Register</button>
         <a href="{{ url_for('login.user_login') }}">Already have an account? Log-in</a>
-
-        <ul>
-            {% for employee in employees %}
-                <li>{{ employee.first_name }}</li>
-            {% endfor %}
-        </ul>
     </form>
 </body>
 </html>

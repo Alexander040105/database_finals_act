@@ -7,6 +7,8 @@ import mysql.connector
 from app.user.login import login as user_login
 from app.user.register import register as user_register
 from app.user.admin import admin
+from app.user.user import user
+from app.user.leave import employee_leave
 from db import db
 
 #importing the tables from the models.py na 1:1 with our mysql database
@@ -16,7 +18,9 @@ from models import Department, WebsiteUsers, Employee, EmployeeLeave
 app = Flask(__name__)
 app.register_blueprint(user_login, url_prefix="/user/login")
 app.register_blueprint(user_register, url_prefix="/user/register")
-app.register_blueprint(admin, url_prefix="/user/admin")
+app.register_blueprint(admin, url_prefix="/user/")
+app.register_blueprint(user, url_prefix="/user/")
+app.register_blueprint(employee_leave, url_prefix="/user/")
 
 #trying out sqlalchemy
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'

@@ -24,14 +24,54 @@
     <nav>
         
             <ul>
-                <li><a href="">User Dashboard</a></li> <!-- dito sila magaapprove or reject ng leave -->
-                <li><a href="">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
-                <li><a href="{{ url_for('admin.user_logout') }}">Logout</a></li>
+                <li><a href="{{ url_for('user.user_dashboard', user_id=session['employee_id']) }}">User Dashboard</a></li> <!-- dito nila makikita yung leave applications nila -->
+                <li><a href="{{ url_for('employee_leave.request_leave', user_role=session['user_role'].lower(), user_id=session['employee_id']) }}">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
+                <li><a href="{{ url_for('user.user_logout') }}">Logout</a></li>
             </ul>
     </nav>
     <h1>User Dashboard</h1>
     <h2>Welcome {{ username }}</h2>
 {% endif %}
+
+<h2>{{ session['user_name'] }}'s Leave Applications</h2>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Leave ID</th>
+            <th>Employee ID</th>
+            <th>Leave Type</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Date Filed</th>
+            <th>Status</th>
+            <th>Approved By</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if employee_leaves %}
+            {% for leave in employee_leaves %}
+                <tr>
+                <td>{{ leave.leave_id }}</td>
+                <td>{{ leave.employee_id }}</td>
+                <td>{{ leave.leave_type }}</td>
+                <td>{{ leave.start_date }}</td>
+                <td>{{ leave.end_date }}</td>
+                <td>{{ leave.date_filed }}</td>
+                <td>{{ leave.status }}</td>
+                {% if leave.approved_by == None %}
+                    <td></td>
+                {% else %}
+                    <td>{{ leave.approved_by }}</td>
+                {% endif %}
+                </tr>
+            {% endfor %}
+        {% else %}
+        <tr><td colspan="8">No leave applications found.</td></tr>
+        {% endif %}
+    </tbody>
+</table>
+
 </body>
 </html>
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %} 
+        <ul> 
+            {% for message in messages %}
+                <li>{{ message }}</li> 
+            {% endfor %} 
+        </ul> 
+    {% endif %} 
+    {% endwith %}
+
+{% if session['user_role'] == 'Admin' %}
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('admin.user_admin_dashboard', user_id=session['employee_id']) }}">Admin's Leave Applications</a></li> <!-- sarili nilang leave -->
+            <li><a href="{{ url_for('admin.user_admin_approval', user_id=session['employee_id']) }}">Admin Leave Dashboard</a></li> 
+            <li><a href="{{ url_for('employee_leave.request_leave', user_role=session['user_role'].lower(), user_id=session['employee_id']) }}">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
+            <li><a href="{{ url_for('admin.user_logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+    <h1>Admin Dashboard</h1>
+    <h2>Welcome {{ username }}</h2>
+{% endif %}
+
+{% if session['user_role'] == 'User' %}
+    <nav>
+        
+            <ul>
+                <li><a href="{{ url_for('user.user_dashboard', user_id=session['employee_id']) }}">User Dashboard</a></li> <!-- dito sila magaapprove or reject ng leave -->
+                <li><a href="{{ url_for('employee_leave.request_leave', user_role=session['user_role'], user_id=session['employee_id']) }}">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
+                <li><a href="{{ url_for('user.user_logout') }}">Logout</a></li>
+            </ul>
+    </nav>
+    <h1>Leave Application Form</h1>
+{% endif %}
+
+<form method="POST" action="{{ url_for('employee_leave.request_leave', user_role=user_role.lower(), user_id=user_id) }}" id="user_input_form">
+    <!--Header-->
+    <div class="head">
+        <p>Register</p> <!--Can be changed naman-->
+    </div>
+
+    <!--Forms-->
+    <div class="form_sections">
+        <!--First container: Basic information-->
+        <div class="basic_info">
+            <h3>Type of Leave</h3>
+            <select name="leave_type" id="user_input">
+                {% for leave in leave_types %}
+                    <option value="{{ leave }}">{{ leave }}</option>
+                {% endfor %}
+            </select>
+            
+            <h3>Start Date</h3>
+            <input type="date" id="user_input" name="start_date" placeholder="Start Date" required>
+            
+            <h3>End Date</h3>
+            <input type="date" id="user_input" name="end_date" placeholder="End Date" required>
+            
+            <h3>Leave Reason</h3>
+            <textarea type="text" id="user_input" name="leave_reason" placeholder="Leave Reason" required></textarea>
+        </div>
+    </div>
+    <button type="submit">Register</button>
+</form>
+
+</body>
+</html>
+
