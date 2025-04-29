@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <!--<link rel="stylesheet" href="/static/css/main.css'">-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
@@ -24,13 +25,44 @@
     <nav>
         
             <ul>
-                <li><a href="">User Dashboard</a></li> <!-- dito sila magaapprove or reject ng leave -->
-                <li><a href="">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
+                <li><a href="userDashboard">User Dashboard</a></li> <!-- dito sila magaapprove or reject ng leave -->
+                <li><a href="leaveApplication">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
                 <li><a href="{{ url_for('admin.user_logout') }}">Logout</a></li>
             </ul>
     </nav>
-    <h1>User Dashboard</h1>
-    <h2>Welcome {{ username }}</h2>
+    <section class="userDashboard"><!--Section para dun sa part ng user dashboard-->
+        <h1>User Dashboard</h1>
+        <h2>Welcome {{ username }}</h2>
+        <div class="leaveStatusContainer">
+            <table class="leaveStatusTable"><!--table ginawa ko pero temporary lang if mayroong mas ok na method para i-display-->
+                <tr>
+                    <th>Start of Leave</th>
+                    <th>End of Leave</th>
+                    <th>Status</th>
+                </tr>
+                <!--need ng Javascript para gumawa ng new row ng table tapos yung content i-fetch dun sa database-->
+                <tr>
+                    <!--Placeholder sample nigga-->
+                    <th>4/1/2025</th>
+                    <th>4/7/2025</th>
+                    <th>Approve</th>
+                </tr>
+            </table>
+        </div>
+    </section>
+    <section class="leaveApplication">
+        <h1>Apply for a leave?</h1>
+        <h3>Fill-up the form below:</h3>
+        <div class="leaveApplicationContainer"><!--Placeholder din nigga-->
+            <form method="POST"><!--Based lang dun sa nakita ko sa vid na binigay ni CJ, 2:02:24-->
+                <!--Mas maganda if gagawin parang calendar thingy ito pero pwede ba sa db yun?-->
+                <p>Enter the starting date of your leave:</p><textarea name="leaveStartdate" id="leaveStartdate" placeholder="Insert date in this format: MM/DD/YYYY"></textarea>
+                <br>
+                <p>Enter the ending date of your leave:</p><textarea name="leaveEnddate" id="leaveEnddate" placeholder="Insert date in this format: MM/DD/YYYY"></textarea>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </section>
 {% endif %}
 </body>
 </html>
