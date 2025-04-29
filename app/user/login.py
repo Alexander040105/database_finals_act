@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, flash, redirect, session 
+from flask import Blueprint, render_template, request, flash, redirect, session, url_for
 #importing the tables uli for hereee
 from models import Department, WebsiteUsers, Employee, EmployeeLeave
 from db import db
@@ -35,7 +35,15 @@ def user_login():
             if verify_login(user.user_password, password):
                 flash("Login successful", category="success")
                 print("Login successful")
-                return render_template("admin_home.html", boolean=True)
+                employee_id = user.employee_id
+                session['employee_id'] = employee_id
+                session['user_role'] = user.user_role
+
+                if session['user_role'] == "Admin":
+                    print(session)
+                    return redirect(url_for("admin.user_admin_dashboard", user_id=employee_id))
+                else:
+                    return render_template("user_home.html", boolean=True)
             else:
                 flash("Invalid username or password", category="error")
                 print("Invalid username or password")

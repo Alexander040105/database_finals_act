@@ -10,7 +10,18 @@
     <title></title>
 </head>
 <body>
-    <h1>TEST HOMEPAGE NG ADMIN</h1>
+    <nav>
+        {% if session['user_role'] == 'Admin' %}
+            <ul>
+                <li><a href="">Admin Dashboard</a></li>
+                <li><a href="">Admin Dashboard</a></li>
+                <li><a href="">Admin Dashboard</a></li>
+                <li><a href="">Logout</a></li>
+            </ul>
+        {% endif %}
+    </nav>
+    <h1>Admin Dashboard</h1>
+    <h2>Welcome {{ username }}</h2>
 </body>
 </html>
 

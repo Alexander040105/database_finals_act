@@ -16,7 +16,7 @@ from models import Department, WebsiteUsers, Employee, EmployeeLeave
 app = Flask(__name__)
 app.register_blueprint(user_login, url_prefix="/user/login")
 app.register_blueprint(user_register, url_prefix="/user/register")
-app.register_blueprint(admin, url_prefix="/user/")
+app.register_blueprint(admin, url_prefix="/user/admin")
 
 #trying out sqlalchemy
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
