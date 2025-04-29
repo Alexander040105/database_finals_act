@@ -10,6 +10,15 @@
     <title></title>
 </head>
 <body>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %} 
+            <ul> 
+                {% for message in messages %}
+                    <li>{{ message }}</li> 
+                {% endfor %} 
+            </ul> 
+        {% endif %} 
+    {% endwith %}
     <form method="POST" action="{{ url_for('login.user_login') }}" id="user_input_form">
         <h3>Email</h3>
         <input type="text" id="user_input" name="email" placeholder="Email" required>

@@ -1,23 +1,20 @@
-# user_admin.py
 from flask import Blueprint, render_template, redirect, session, flash, url_for, make_response
 from flask_login import login_required
 from models import Department, WebsiteUsers, Employee, EmployeeLeave
 
-admin = Blueprint("admin", __name__, static_folder="static", template_folder="templates")
-
-    
+user = Blueprint("user", __name__, static_folder="static", template_folder="templates")
 
 @login_required
-@admin.route("/admin/dashboard/id/<int:user_id>", methods=['POST', 'GET'])
-def user_admin_dashboard(user_id):
-    if 'user_role' not in session or session['user_role'] != "Admin":
+@user.route("/user/dashboard/id/<int:user_id>", methods=['POST', 'GET'])
+def user_dashboard(user_id):
+    if 'user_role' not in session or session['user_role'] != "User":
         flash("Unauthorized access", "error")
         return redirect(url_for("login.user_login"))
     
     #finds user again for the session
     user = WebsiteUsers.query.get(user_id)
-    if not user or user.user_role != "Admin":
-        flash("Invalid admin account", "error")
+    if not user or user.user_role != "User":
+        flash("Invalid user account", "error")
         return redirect(url_for("login.user_login"))
     
     employee_info = Employee.query.filter_by(employee_id=user_id).first()
@@ -35,14 +32,14 @@ def user_admin_dashboard(user_id):
     session['employee_position'] = employee_info.employee_position
 
     #para wala nang data cachee di na mababalikan yung data pag nagsession clearrr
-    response = make_response(render_template("admin_home.html", username=session['user_name']))
+    response = make_response(render_template("user_home.html", username=session['user_name']))
     response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
     response.headers['Pragma'] = 'no-cache'
     return response
 
 
-@admin.route("/logout", methods=['POST', 'GET'])
-@admin.route("/", methods=['POST', 'GET'])
+@user.route("/logout", methods=['POST', 'GET'])
+@user.route("/", methods=['POST', 'GET'])
 def user_logout(): 
     session.clear()
     return redirect(url_for("login.user_login"))

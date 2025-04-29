@@ -41,6 +41,9 @@ def user_login():
                 if session['user_role'] == "Admin":
                     print(session)
                     return redirect(url_for("admin.user_admin_dashboard", user_id=employee_id))
+                elif session['user_role'] == "User":
+                    print(session)
+                    return redirect(url_for("user.user_dashboard", user_id=employee_id))
                 else:
                     return render_template("user_home.html", boolean=True)
             else:
@@ -53,8 +56,3 @@ def user_login():
     # session.clear()  
     return render_template("user_login.html", boolean=True)
 
-@login.route("/logout", methods=['POST', 'GET'])
-@login.route("/", methods=['POST', 'GET'])
-def user_login(): 
-    session.clear()
-    return redirect(url_for(user_login))
