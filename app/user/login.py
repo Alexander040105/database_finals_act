@@ -23,6 +23,7 @@ def user_login():
 
         if not all([email, password]):
             flash("Please fill in all fields", "error")
+            print("Please fill in all fields", "error")
             return redirect(request.url)
 
         #finds user
@@ -31,12 +32,16 @@ def user_login():
 
         #authentication process
         if user:
-            if verify_login(user.password, password):
+            if verify_login(user.user_password, password):
                 flash("Login successful", category="success")
+                print("Login successful")
+                return render_template("admin_home.html", boolean=True)
             else:
                 flash("Invalid username or password", category="error")
+                print("Invalid username or password")
+                return redirect(request.url)
         else:
             flash("Email does not exist", category="error")
     
-    session.clear()  
+    # session.clear()  
     return render_template("user_login.html", boolean=True)
