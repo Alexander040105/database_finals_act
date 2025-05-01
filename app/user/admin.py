@@ -91,6 +91,7 @@ def user_admin_approval(user_id):
         
         db.session.commit()
         flash("Leave applications updated successfully.", "success")
+        return redirect(request.url)
     else:
         flash("Leave application not found.", "error")
 

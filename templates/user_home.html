@@ -24,13 +24,14 @@
     <nav>
         
             <ul>
+                <li><h2>{{ username }}</h2></li>
                 <li><a href="{{ url_for('user.user_dashboard', user_id=session['employee_id']) }}">User Dashboard</a></li> <!-- dito nila makikita yung leave applications nila -->
                 <li><a href="{{ url_for('employee_leave.request_leave', user_role=session['user_role'].lower(), user_id=session['employee_id']) }}">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
                 <li><a href="{{ url_for('user.user_logout') }}">Logout</a></li>
             </ul>
     </nav>
     <h1>User Dashboard</h1>
-    <h2>Welcome {{ username }}</h2>
+    
 {% endif %}
 
 <h2>{{ session['user_name'] }}'s Leave Applications</h2>

@@ -30,13 +30,13 @@
         </ul>
     </nav>
     <h1>Admin Dashboard</h1>
-    <h2>Welcome {{ username }}</h2>
+    <h2>{{ username }}</h2>
 {% endif %}
 
 {% if session['user_role'] == 'User' %}
     <nav>
-        
             <ul>
+                <li></li>
                 <li><a href="{{ url_for('user.user_dashboard', user_id=session['employee_id']) }}">User Dashboard</a></li> <!-- dito sila magaapprove or reject ng leave -->
                 <li><a href="{{ url_for('employee_leave.request_leave', user_role=session['user_role'], user_id=session['employee_id']) }}">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
                 <li><a href="{{ url_for('user.user_logout') }}">Logout</a></li>
