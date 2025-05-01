@@ -17,7 +17,6 @@ def get_leave():
     
     return None
 
-
 def check_applications():
     leave_applications = EmployeeLeave.query.all()
     if leave_applications:

@@ -20,7 +20,7 @@
     {% endif %} 
     {% endwith %}
 
-{% if session['user_role'] == 'Admin' %}
+{% if session.get('user_role') == 'Admin' %}
     <nav>
         <ul>
             <li><a href="{{ url_for('profile.get_employee_details', user_role=session['user_role'].lower(), employee_id=session['employee_id']) }}"><h2>{{ username }}</h2></a></li>
@@ -33,10 +33,10 @@
     <h1>Admin Dashboard</h1>
 {% endif %}
 
-{% if session['user_role'] == 'User' %}
+{% if session.get('user_role') == 'User' %}
     <nav>
             <ul>
-                <li><a href="{{ url_for('profile.get_employee_details', user_role=session['user_role'].lower(), employee_id=session['employee_id']) }}"><h2>{{ username }}</h2></a></li>
+                <li><a href="{{ url_for('profile.get_employee_details', user_role=session['user_role'].lower(), user_id=session['employee_id']) }}"><h2>{{ username }}</h2></a></li>
                 <li><a href="{{ url_for('user.user_dashboard', user_id=session['employee_id']) }}">User Dashboard</a></li> <!-- dito sila magaapprove or reject ng leave -->
                 <li><a href="{{ url_for('employee_leave.request_leave', user_role=session['user_role'], user_id=session['employee_id']) }}">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
                 <li><a href="{{ url_for('user.user_logout') }}">Logout</a></li>
@@ -45,37 +45,34 @@
     <h1>Leave Application Form</h1>
 {% endif %}
 
-<form method="POST" action="{{ url_for('employee_leave.request_leave', user_role=user_role.lower(), user_id=user_id) }}" id="user_input_form">
-    <!--Header-->
-    <div class="form-container">
-        <div class="head">
-            <p>Register</p> <!--Can be changed naman-->
-        </div>
-
-        <!--Forms-->
-        <div class="form_sections">
-            <!--First container: Basic information-->
-            <div class="basic_info">
-                <h3>Type of Leave</h3>
-                <select name="leave_type" id="user_input">
-                    {% for leave in leave_types %}
-                        <option value="{{ leave }}">{{ leave }}</option>
-                    {% endfor %}
-                </select>
-            
-                <h3>Start Date</h3>
-                <input type="date" id="user_input" name="start_date" placeholder="Start Date" required>
-            
-                <h3>End Date</h3>
-                <input type="date" id="user_input" name="end_date" placeholder="End Date" required>
-            
-                <h3>Leave Reason</h3>
-                <textarea type="text" id="user_input" name="leave_reason" placeholder="Leave Reason" required></textarea>
-            </div>
-        </div>
-        <button type="submit">Register</button>
-    </div>
-</form>
+<div class="employee_info">
+    <ul>
+        <li>
+            <h2>Employee ID:</h2> {{ employee_details.employee_id }}
+        </li>
+        <li>
+            <h2>Name:</h2> {{ employee_details.first_name }} {{ employee_details.last_name }}
+        </li>
+        <li>
+            <h2>Email:</h2> {{ employee_details.email }}
+        </li>
+        <li>
+            <h2>Phone Number:</h2> {{ employee_details.phone_number or "N/A" }}
+        </li>
+        <li>
+            <h2>Address:</h2> {{ employee_details.home_address }}
+        </li>
+        <li>
+            <h2>Date Hired:</h2> {{ employee_details.date_hired }}
+        </li>
+        <li>
+            <h2>Employee Position:</h2> {{ employee_details.employee_position }}
+        </li>
+        <li>
+            <h2>Department:</h2> {{ employee_details.department_name }}
+        </li>
+    </ul>
+</div>
 
 </body>
 </html>
