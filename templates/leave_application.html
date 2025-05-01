@@ -47,32 +47,34 @@
 
 <form method="POST" action="{{ url_for('employee_leave.request_leave', user_role=user_role.lower(), user_id=user_id) }}" id="user_input_form">
     <!--Header-->
-    <div class="head">
-        <p>Register</p> <!--Can be changed naman-->
-    </div>
-
-    <!--Forms-->
-    <div class="form_sections">
-        <!--First container: Basic information-->
-        <div class="basic_info">
-            <h3>Type of Leave</h3>
-            <select name="leave_type" id="user_input">
-                {% for leave in leave_types %}
-                    <option value="{{ leave }}">{{ leave }}</option>
-                {% endfor %}
-            </select>
-            
-            <h3>Start Date</h3>
-            <input type="date" id="user_input" name="start_date" placeholder="Start Date" required>
-            
-            <h3>End Date</h3>
-            <input type="date" id="user_input" name="end_date" placeholder="End Date" required>
-            
-            <h3>Leave Reason</h3>
-            <textarea type="text" id="user_input" name="leave_reason" placeholder="Leave Reason" required></textarea>
+    <div class="form-container">
+        <div class="head">
+            <p>Register</p> <!--Can be changed naman-->
         </div>
+
+        <!--Forms-->
+        <div class="form_sections">
+            <!--First container: Basic information-->
+            <div class="basic_info">
+                <h3>Type of Leave</h3>
+                <select name="leave_type" id="user_input">
+                    {% for leave in leave_types %}
+                        <option value="{{ leave }}">{{ leave }}</option>
+                    {% endfor %}
+                </select>
+            
+                <h3>Start Date</h3>
+                <input type="date" id="user_input" name="start_date" placeholder="Start Date" required>
+            
+                <h3>End Date</h3>
+                <input type="date" id="user_input" name="end_date" placeholder="End Date" required>
+            
+                <h3>Leave Reason</h3>
+                <textarea type="text" id="user_input" name="leave_reason" placeholder="Leave Reason" required></textarea>
+            </div>
+        </div>
+        <button type="submit">Register</button>
     </div>
-    <button type="submit">Register</button>
 </form>
 
 </body>
