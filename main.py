@@ -26,7 +26,7 @@ app.register_blueprint(employee_leave, url_prefix="/user/")
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 # format pls change the password based sa mysql nyo app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:passowrd@localhost/human_resources_db'
 #use the mysql_scripts na nasa folder sa workbench, para magamit nyo yung db na nilagay ko here sa app.config hihi:?
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:Jade_040105_092004_Aki@localhost/human_resources_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ChewyChoco22*@localhost/human_resources_db'
 app.config['SECRET_KEY'] = 'secret_key'
 # db = SQLAlchemy(app)
 db.init_app(app)
