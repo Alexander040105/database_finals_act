@@ -38,5 +38,9 @@ def get_employee_details(user_role, employee_id):
         "department_name": employee_department.department_name if employee else None,
         "user_role": user.user_role
     }
-        
-    return render_template("employee_profile.html", employee_details=employee_details)
+
+    # for username to appear in navbar in employee profile
+    username = f"{user.first_name} {user.last_name}"
+
+    # added the username=username
+    return render_template("employee_profile.html", employee_details=employee_details, username=username)
