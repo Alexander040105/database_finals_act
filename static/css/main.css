@@ -41,7 +41,7 @@ form#user_input_form {
     box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
     width: 90%;
     max-width: 1200px;
-    margin-top: 50px;
+    margin-top: 10px;
     margin-bottom: 30px;
 }
 
@@ -49,7 +49,7 @@ form#user_input_form {
 .form_sections {
     display: flex;
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 20px;
 }
 
 .head {
@@ -181,17 +181,49 @@ ul li {
 nav {
     position: absolute;
     top: 30px;
-    right: 15px;
+    left: 0;
+    width: 100%;
 }
 
 nav ul {
-    
     display: flex;
-    gap: 1rem;
+    justify-content: flex-end;
+    gap: 0.5px;
+    padding: 0;
+    margin: 0;
 }
 
-nav ul li {
-    list-style: none;
+/* Target the first li in the navigation menu */
+nav ul li:first-child {
+    position: relative;
+    left: 0;   /* Adjust to move it to the left edge */
+    z-index: 1000; /* Ensures it appears on top */
+}
+
+/* Styling for the anchor link inside the first li */
+nav ul li:first-child a {
+    color: black;
+    background-color: #7297b4;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    display: inline-block;
+    white-space: nowrap;
+    position: relative;
+}
+
+/* Hover state for the anchor link */
+nav ul li:first-child a:hover {
+    background-color: #3e9cce;
+}
+
+/* Optional: Remove the margin from the h2 inside the first li */
+nav ul li:first-child a {
+    margin: 0;
+    background-color: #a3d5fc; /* Add background to the h2 */
+    padding: 8px 12px;
+    border-radius: 5px;
 }
 
 nav ul li a {
@@ -201,6 +233,8 @@ nav ul li a {
     text-decoration: none;
     border-radius: 5px;
     font-weight: 500;
+    white-space: nowrap;
+    display: inline-block;
     transition: background-color 0.3s;
 }
 
@@ -264,4 +298,64 @@ table tr td[colspan="8"] {
     margin-top: 20px; 
     font-style: italic;
     padding: 20px;
+}
+
+.employee_info {
+    max-width: 400px;
+    margin: 30px auto;
+    padding: 25px;
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+}
+
+.employee_info h2 {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    color: #213448;
+}
+
+.employee_info ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.employee_info li {
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 1rem;
+    color: #333;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.employee_info li:last-child {
+    border-bottom: none;
+}
+
+.employee_info li .value {
+    color: #555;
+    font-size: 1rem;
+    white-space: nowrap; /* Prevent value from breaking onto next line */
+}
+
+.employee_info .label {
+    font-weight: bold;
+    color: #213448;
+    margin-right: 8px;
+    flex-wrap: nowrap;
+    margin-right: 10px;
+    
+}
+
+.employee_info .value {
+    color: #555;
 }
