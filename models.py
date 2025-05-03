@@ -1,6 +1,5 @@
 from db import db
 
-#got help from our friendly neighborhood AIs to setup the class nung mga tables HASDHASFDH nakaktamad gawin one by one e
 #1:1 na toh with the existing tables na nasa script_draft2.sql file 
 class Department(db.Model):
     __tablename__ = 'department'
