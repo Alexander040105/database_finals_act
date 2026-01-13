@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -77,3 +78,84 @@
 </body>
 </html>
 
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %} 
+        <ul> 
+            {% for message in messages %}
+                <li>{{ message }}</li> 
+            {% endfor %} 
+        </ul> 
+    {% endif %} 
+    {% endwith %}
+
+{% if session.get('user_role') == 'Admin' %}
+    <nav>
+        <ul>
+            <li><a href="{{ url_for('profile.get_employee_details', user_role=session['user_role'].lower(), employee_id=session['employee_id']) }}"><h2>{{ username }}</h2></a></li>
+            <li><a href="{{ url_for('admin.user_admin_dashboard', user_id=session['employee_id']) }}">Admin's Leave Applications</a></li> <!-- sarili nilang leave -->
+            <li><a href="{{ url_for('admin.user_admin_approval', user_id=session['employee_id']) }}">Admin Leave Dashboard</a></li> 
+            <li><a href="{{ url_for('employee_leave.request_leave', user_role=session['user_role'].lower(), user_id=session['employee_id']) }}">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
+            <li><a href="{{ url_for('admin.user_logout') }}">Logout</a></li>
+        </ul>
+    </nav>
+    <h1>Admin Dashboard</h1>
+{% endif %}
+
+{% if session.get('user_role') == 'User' %}
+    <nav>
+            <ul>
+                <li><a href="{{ url_for('profile.get_employee_details', user_role=session['user_role'].lower(), employee_id=session['employee_id']) }}"><h2>{{ username }}</h2></a></li>
+                <li><a href="{{ url_for('user.user_dashboard', user_id=session['employee_id']) }}">User Dashboard</a></li> <!-- dito sila magaapprove or reject ng leave -->
+                <li><a href="{{ url_for('employee_leave.request_leave', user_role=session['user_role'], user_id=session['employee_id']) }}">Apply for Leave</a></li><!-- dito sila magaapply ng sarili nilang leave -->
+                <li><a href="{{ url_for('user.user_logout') }}">Logout</a></li>
+            </ul>
+    </nav>
+    <h1>Leave Application Form</h1>
+{% endif %}
+
+<div class="employee_info">
+    <ul>
+        <li>
+            <h2>Employee ID:</h2> {{ employee_details.employee_id }}
+        </li>
+        <li>
+            <h2>Name:</h2> {{ employee_details.first_name }} {{ employee_details.last_name }}
+        </li>
+        <li>
+            <h2>Email:</h2> {{ employee_details.email }}
+        </li>
+        <li>
+            <h2>Phone Number:</h2> {{ employee_details.phone_number or "N/A" }}
+        </li>
+        <li>
+            <h2>Address:</h2> {{ employee_details.home_address }}
+        </li>
+        <li>
+            <h2>Date Hired:</h2> {{ employee_details.date_hired }}
+        </li>
+        <li>
+            <h2>Employee Position:</h2> {{ employee_details.employee_position }}
+        </li>
+        <li>
+            <h2>Department:</h2> {{ employee_details.department_name }}
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
+
+>>>>>>> Stashed changes

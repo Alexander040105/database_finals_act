@@ -1,17 +1,46 @@
-* {
-    box-sizing: border-box;
+/* Main CSS for HR Application */
+
+/* ===== Base Styles with Updated Color Palette ===== */
+:root {
+    --primary: #5383e9;
+    --primary-dark: #213448;
+    --primary-light: #6a94eb;
+    --accent: #ECEFCA;
+    --accent-dark: #dfe3b0;
+    --dark: #213448;
+    --light: #ECEFCA;
+    --success: #4ade80;
+    --danger: #ef4444;
+    --warning: #f59e0b;
+    --gray-100: #f8fafc;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-400: #94a3b8;
+    --gray-500: #64748b;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1e293b;
+    --gray-900: #0f172a;
+    --border-radius: 8px;
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
     font-family: 'Ubuntu', sans-serif;
-}
-
-body {
-    margin: 0;
-    background-color: #94B4C1;
-    position: relative;
-    justify-content: center;
-    align-items: center;
+    line-height: 1.6;
+    color: var(--dark);
+    background-color: var(--gray-100);
     min-height: 100vh;
+<<<<<<< Updated upstream
     padding-top: 150px;
 }
 
@@ -230,9 +259,27 @@ nav ul li a {
     color: white;
     background-color: #547792;
     padding: 8px 12px;
+=======
+    padding: 0;
+    margin: 0;
+  }
+  
+  a {
+    color: var(--primary);
+>>>>>>> Stashed changes
     text-decoration: none;
-    border-radius: 5px;
+    transition: color 0.2s ease;
+  }
+  
+  a:hover {
+    color: var(--primary-light);
+    text-decoration: underline;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.5rem;
     font-weight: 500;
+<<<<<<< Updated upstream
     white-space: nowrap;
     display: inline-block;
     transition: background-color 0.3s;
@@ -263,28 +310,184 @@ table th, table td {
 
 table th {
     background-color: #09283f;
+=======
+    line-height: 1.2;
+    color: var(--primary-dark);
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin: 1.5rem 2rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  /* ===== Flash Messages ===== */
+  body > ul {
+    list-style: none;
+    padding: 1rem 2rem;
+    margin: 1rem 2rem;
+    background-color: var(--light);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+  }
+  
+  body > ul li {
+    color: var(--primary-dark);
+    padding: 0.25rem 0;
+  }
+  
+  /* ===== Navigation ===== */
+  nav {
+    background-color: var(--primary-dark);
+    box-shadow: var(--shadow);
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  nav ul {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+  }
+  
+  nav ul li {
+    margin: 0;
+  }
+  
+  nav ul li a {
+>>>>>>> Stashed changes
     color: white;
-}
-
-form button[type="submit"] {
+    font-weight: 500;
+    padding: 0.5rem 0;
     display: block;
-    margin: 1.5rem auto;
-    padding: 10px 20px;
-    background-color: #0f4b72;
-    color: white;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-form button[type="submit"]:hover {
-    background-color: #3584c0;
-}
-
-table tr td[colspan="8"] {
+    transition: color 0.2s ease;
+  }
+  
+  nav ul li a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  
+  nav ul li a h2 {
+    margin: 0;
+    color: var(--accent);
+    font-size: 1.25rem;
+  }
+  
+  /* ===== Forms ===== */
+  #user_input_form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin: 2rem auto;
+    border-top: 4px solid var(--primary);
+  }
+  
+  .form-container {
+    width: 100%;
+  }
+  
+  .head {
+    margin-bottom: 2rem;
     text-align: center;
+  }
+  
+  .head p {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+  }
+  
+  .form_sections {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  @media (min-width: 768px) {
+    .form_sections {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+  
+  .basic_info, .employee_info {
+    margin-bottom: 1.5rem;
+  }
+  
+  .basic_info h2, .employee_info h2 {
+    color: var(--primary-dark);
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 1.5rem;
+  }
+  
+  #user_input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--border-radius);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    background-color: white;
+  }
+  
+  #user_input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(83, 131, 233, 0.2);
+  }
+  
+  textarea#user_input {
+    min-height: 100px;
+    resize: vertical;
+  }
+  
+  button {
+    display: inline-block;
+    background-color: var(--primary);
+    color: white;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  button:hover {
+    background-color: var(--primary-light);
+  }
+  
+  button:active {
+    transform: translateY(1px);
+  }
+  
+  form a {
+    display: block;
+    margin-top: 1rem;
+    text-align: center;
+<<<<<<< Updated upstream
     font-style: italic;
     color: #777;
     background-color: #f9f9f9;
@@ -359,3 +562,166 @@ table tr td[colspan="8"] {
 .employee_info .value {
     color: #555;
 }
+=======
+  }
+  
+  /* ===== Tables ===== */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0 2rem;
+    background-color: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+  }
+  
+  th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  
+  th {
+    background-color: var(--primary-dark);
+    color: white;
+    font-weight: 600;
+  }
+  
+  tr:nth-child(even) {
+    background-color: var(--light);
+  }
+  
+  tr:hover {
+    background-color: var(--accent);
+  }
+  
+  /* ===== Employee Info Display ===== */
+  .employee_info {
+    background-color: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    margin: 1.5rem 2rem;
+    border-left: 4px solid var(--primary);
+  }
+  
+  .employee_info ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .employee_info ul li {
+    display: flex;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  
+  .employee_info ul li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  
+  .employee_info ul li h2 {
+    width: 200px;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--primary-dark);
+  }
+  
+  /* ===== Leave Application Form ===== */
+  select[name="leave_statuses"] {
+    padding: 0.5rem;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--border-radius);
+    font-family: 'Ubuntu', sans-serif;
+    background-color: white;
+  }
+  
+  select[name="leave_type"],
+  select[name="department_id"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1.25rem;
+    border: 1px solid var(--gray-300);
+    border-radius: var(--border-radius);
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 1rem;
+    background-color: white;
+  }
+  
+  /* ===== Status Colors ===== */
+  td:nth-child(7):contains("Pending") {
+    color: var(--warning);
+    font-weight: 500;
+  }
+  
+  td:nth-child(7):contains("Approve") {
+    color: var(--success);
+    font-weight: 500;
+  }
+  
+  td:nth-child(7):contains("Reject") {
+    color: var(--danger);
+    font-weight: 500;
+  }
+  
+  /* ===== Responsive Adjustments ===== */
+  @media (max-width: 768px) {
+    nav ul {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    
+    .employee_info ul li {
+      flex-direction: column;
+    }
+    
+    .employee_info ul li h2 {
+      width: 100%;
+      margin-bottom: 0.25rem;
+    }
+    
+    table {
+      display: block;
+      overflow-x: auto;
+    }
+    
+    #user_input_form {
+      margin: 1rem;
+      padding: 1.5rem;
+    }
+    
+    .form_sections {
+      grid-template-columns: 1fr;
+    }
+    
+    h1 {
+      margin: 1rem;
+    }
+  }
+  
+  /* ===== Login Page Specific ===== */
+  body:has(form[action*="login"]) {
+    background-color: var(--light);
+  }
+  
+  body:has(form[action*="login"]) #user_input_form {
+    margin-top: 5rem;
+    max-width: 500px;
+  }
+  
+  /* ===== Additional Accent Elements ===== */
+  h1::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--accent);
+    margin-top: 0.5rem;
+  }
+>>>>>>> Stashed changes
